@@ -1,9 +1,10 @@
 # Pybytes Home Sensor
-__Victor Baquero Wihlborg (vb222pw)__
+
+**Victor Baquero Wihlborg (vb222pw)**
 
 ---
 
-*This project started as a very different beast. It was an esp32 as the device with some sensors, firebase as backend and a simple web app displaying the data. In the end I had to abandon that setup as I was having too many problems with connecting the esp32 and firebase. I had taken on too big a challenge and time ran out and I had to pivot the project to a simpler setup.* 
+_This project started as a very different beast. It was an esp32 as the device with some sensors, firebase as backend and a simple web app displaying the data. In the end I had to abandon that setup as I was having too many problems with connecting the esp32 and firebase. I had taken on too big a challenge and time ran out and I had to pivot the project to a simpler setup._
 
 The Pybytes Home Sensor is a IoT project sensing temperature, humidity, barometric pressure and ambient light and then logging it on Pybytes via wifi. The data is then displayed on the Pybytes project dashboard.
 
@@ -42,7 +43,6 @@ The sensors on the board are:
 - A combined barometric pressure and temperature sensor that can be used to calculate altitude.
 - A 3 axis accelerometer
 
-
 ### LiPo Battery (12€)
 
 I am using a LiPo battery that I had lying around. Its just a 750mAh battery and I will get a bigger one but I want to see how long the device can be run before I have to charge the battery again.
@@ -53,7 +53,7 @@ I bought everything through [Electokit](https://www.electrokit.com/) but it was 
 
 ## Seting up the developer environment
 
-Theres some setting up that needs to be done and as is often the case, it was a bit harder on a Windows machine. 
+Theres some setting up that needs to be done and as is often the case, it was a bit harder on a Windows machine.
 
 The boards have to be updated to work with the latest software.
 
@@ -97,7 +97,7 @@ This is very straight forward, once you know what way to plug in the board to th
 
 Once the board is connected to the shield you just have to connect the USB and start coding. All the sensors I use are on the shield.
 
-[imgage of connected board]
+<img src="https://i.imgur.com/gK4iTFJ.jpg" alt="All components connected" width="480" align="center" style="display:block;margin: auto;"/>
 
 ## Platform
 
@@ -113,7 +113,7 @@ The setup I'm thinking about is a Raspberry Pi with the TIG-stack that we learne
 
 The Pycom boards are programmed with [MicroPython](https://micropython.org/), a slimmed down version of Python 3.
 
-The code for this project is quite straight forward and I will just highlight some sections. All the code can be found on the [project  GitHub page](#).
+The code for this project is quite straight forward and I will just highlight some sections. All the code can be found on the [project GitHub page](https://github.com/Bagera/lodge-logger).
 
 ### Temperature
 
@@ -173,6 +173,21 @@ The Pybytes libraries make the use of MQTT automatic and easy. I send my MQTT me
 
 ## The Dashboard
 
-Whenever Pybytes receivs a signal it is saved in the device database and can be accessed for 30 days on a free account.
+Whenever Pybytes receives a signal it is saved in the device database and can be accessed for 30 days on a free account.
 
-I made the dashboard in Pybytes with their ready-made widgets
+I made the dashboard in Pybytes with their ready-made widgets. The widgets are not the best as they do not even include a widget corresponding to every sensor on the shields and they are not very responsive. Sometimes the numbers overflow because they have 10 or more decimals even though the number sent from the device only has 2. The graphs available seem to be very buggy and hard to use.
+
+<img src="https://i.imgur.com/TRw2iFp.png" alt="IoT device in a window with potted plants" align="center" style="display:block;margin: 1em  auto 0;"/>
+
+## Final Thoughts
+
+<figure>
+  <img src="https://i.imgur.com/R6Lkqet.jpg" alt="IoT device in a window with potted plants" align="center" style="display:block;margin: 1em  auto 0;"/>
+  <figcaption>The device being tested in a real environment before cabin deployment.</figcaption>
+</figure>
+
+This project did not go as planned and I had to scrap everything I had on friday morning to make a much simpler project. I want to revisit this in a few different ways in the future.
+
+- I want to make the device with a Raspery Pi Pico W and sensors soldered to a board. I will also look into ESPNow and ESPHome to see if these could be interesting projects for me.
+- Make a custom backend with a gateway that connects to several devices and keeping my data more private. Maybe Home Assistant for Raspberry Pi could be of interest here.
+- I want to make a nice 3d printed case for the device. I think this will be the first thing I do after this course ends. Preferably it will be a case that can be used by others that have Pycom devices.
